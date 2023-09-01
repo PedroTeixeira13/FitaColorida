@@ -1,52 +1,37 @@
 package Fita;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        int tam;
-        int[] fita;
-        int[] dist;
+        int tam, pos, cor;
+        int[] fita = {-1, 0, -1, -1, -1, 0, -1};
 
         Scanner sc = new Scanner(System.in);
+        Random r = new Random();
 
-        System.out.println("Qual o tamanho da fita?");
+        /*System.out.println("Qual o tamanho da fita?");
         tam = sc.nextInt();
 
-        fita = new int[tam];
-        dist = new int[tam];
+        fita = new int[tam];*/
 
-        for(int i = 0; i < fita.length; i++) {
-            System.out.print("\nEntre com valor -1 ou 0: ");
-            fita[i] = sc.nextInt();
+        for(pos = 0; pos < fita.length; pos++) {
+            //fita[pos] = r.nextInt(2);
+            if (fita[pos] == -1) {
+                fita[pos] = 10;
+            } else {
+                fita[pos] = 0;
+            }
         }
         sc.close();
-
-        //insere qualquer coisa em dist
-        for (int i = 0; i < dist.length; i++) {
-            dist[i] = 666;
+        
+        for (int i = 1; i < fita.length; i++) {
+            
+            fita[i] = Math.min(fita[i], Math.min(fita[i - 1] + 1, 9));
         }
-
-        //transforma em 0 quando a distância é 0
-        for(int i = 0; i < fita.length; i++) {
-            if (fita[i] == 0) {
-                dist[i] = 0;
-                for (int j = 0; j < dist.length; j++) {
-                    dist[j] = dist[i] - dist[j];
-                }
-            }
-        }
-
-        /*for (int i = 0; i < dist.length; i++) {
-            if (fita[i] == -1) {
-                for (int j = 0; j < dist.length; j++) {
-                    
-                }
-            }
-        }*/
 
         for (int i = 0; i < fita.length; i++) {
-            System.out.printf(" [%s] ", dist[i]);
+            System.out.printf(" [%s] ", fita[i]);
         }
     }
 }
