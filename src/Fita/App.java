@@ -11,15 +11,18 @@ public class App {
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
 
+        //pergunta o tamanho desejado para a fita
         while (tam <3 || tam > Math.pow(10, 4)) {
             System.out.println("Qual o tamanho da fita?");
             tam = sc.nextInt();
             sc.close();
         }
-
         fita = new int[tam];
         mostra = new int[tam];
 
+        //adiciona aleatoriamente um numero muito alto quando o quadrado não tiver um 0 na fita que terá o resultado
+        //e adiciona aleariamente o numero -1 na fita de amostragem para checar o que foi sorteado
+        //adicionar manualmente seria um trabalho muito extenso em fitas grandes
         for(pos = 0; pos < fita.length; pos++) {
             fita[pos] = r.nextInt(2);
             if (fita[pos] == 1) {
@@ -31,10 +34,11 @@ public class App {
             }
         }
 
-        
+        //faz a contagem da esquerda para a direita do 0 mais próximo
         for (int i = 1; i < fita.length; i++) {
             fita[i] = Math.min(fita[i], Math.min(fita[i - 1] + 1, 9));
         }
+        //faz a contagem da direita para a esquerda do 0 mais próximo, mas sem substituir o que já tinha sido alterado
         for (int i = fita.length - 2; i >= 0; i--) {
             fita[i] = Math.min(fita[i], Math.min(fita[i + 1] + 1, 9));
         }
