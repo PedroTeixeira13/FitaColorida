@@ -15,8 +15,8 @@ public class App {
         while (tam <3 || tam > Math.pow(10, 4)) {
             System.out.println("Qual o tamanho da fita?");
             tam = sc.nextInt();
-            sc.close();
         }
+        sc.close();
         fita = new int[tam];
         mostra = new int[tam];
 
